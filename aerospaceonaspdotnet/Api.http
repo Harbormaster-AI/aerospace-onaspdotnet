@@ -1,0 +1,5 @@
+@aerospaceonaspdotnet.Api_HostAddress = http://localhost:5076
+
+GET {{aerospaceonaspdotnet.Api_HostAddress}}/
+Accept: application/json
+

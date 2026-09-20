@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="aerospaceonaspdotnet/aerospaceonaspdotnet.Api.csproj" />
+  <Project Path="aerospaceonaspdotnet/Tests/aerospaceonaspdotnet.Tests.csproj" />
+</Solution>
