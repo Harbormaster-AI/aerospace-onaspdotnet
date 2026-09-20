@@ -16,7 +16,7 @@ public class SalesCampaignRepository : ISalesCampaignRepository
     {
         return await _db.SalesCampaigns
             .Include(x => x.Region)
-            .Include(x => x.Operator)
+            .Include(x => x.Operator_)
             .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
     }
 
@@ -25,7 +25,7 @@ public class SalesCampaignRepository : ISalesCampaignRepository
         return await _db.SalesCampaigns
             .AsNoTracking()
             .Include(x => x.Region)
-            .Include(x => x.Operator)
+            .Include(x => x.Operator_)
             .ToListAsync(cancellationToken);
     }
 

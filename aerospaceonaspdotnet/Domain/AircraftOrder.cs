@@ -9,7 +9,7 @@ public class AircraftOrder
  public virtual long? AircraftorderId { get; set; } 
  public virtual string? OrderNumber { get; set; } 
  public virtual Money? TotalAmount { get; set; } 
-public virtual Operator? Operator { get; set; } 
+public virtual Operator_? Operator_ { get; set; } 
 public virtual AircraftVariant? Variant { get; set; } 
 public virtual Quote? Quote { get; set; } 
 public virtual PurchaseAgreement? PurchaseAgreement { get; set; } 

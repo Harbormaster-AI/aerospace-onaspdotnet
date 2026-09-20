@@ -16,7 +16,7 @@ public class AircraftRepository : IAircraftRepository
     {
         return await _db.Aircrafts
             .Include(x => x.Variant)
-            .Include(x => x.Operator)
+            .Include(x => x.Operator_)
             .Include(x => x.Registration)
             .Include(x => x.Warranty)
             .Include(x => x.ConnectedAircraft)
@@ -29,7 +29,7 @@ public class AircraftRepository : IAircraftRepository
         return await _db.Aircrafts
             .AsNoTracking()
             .Include(x => x.Variant)
-            .Include(x => x.Operator)
+            .Include(x => x.Operator_)
             .Include(x => x.Registration)
             .Include(x => x.Warranty)
             .Include(x => x.ConnectedAircraft)

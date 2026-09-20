@@ -18,8 +18,8 @@ public static class AircraftEndpoints
 
         group.MapPut("/assignVariant", AssignVariant);
         group.MapPut("/unassignVariant", UnassignVariant);
-        group.MapPut("/assignOperator", AssignOperator);
-        group.MapPut("/unassignOperator", UnassignOperator);
+        group.MapPut("/assignOperator_", AssignOperator_);
+        group.MapPut("/unassignOperator_", UnassignOperator_);
         group.MapPut("/assignRegistration", AssignRegistration);
         group.MapPut("/unassignRegistration", UnassignRegistration);
         group.MapPut("/assignWarranty", AssignWarranty);
@@ -116,19 +116,19 @@ public static class AircraftEndpoints
         return unassigned ? Results.NoContent() : Results.NotFound();
     }
 
-    private static async Task<IResult> AssignOperator(
+    private static async Task<IResult> AssignOperator_(
         AssociationRequest request,
         IAircraftService service,
         CancellationToken cancellationToken) {
-        var assigned = await service.AssignOperator(request, cancellationToken);
+        var assigned = await service.AssignOperator_(request, cancellationToken);
         return assigned ? Results.NoContent() : Results.NotFound();
     }
 
-    private static async Task<IResult> UnassignOperator(
+    private static async Task<IResult> UnassignOperator_(
     AssociationRequest request,
     IAircraftService service,
     CancellationToken cancellationToken) {
-        var unassigned = await service.UnassignOperator(request, cancellationToken);
+        var unassigned = await service.UnassignOperator_(request, cancellationToken);
         return unassigned ? Results.NoContent() : Results.NotFound();
     }
 

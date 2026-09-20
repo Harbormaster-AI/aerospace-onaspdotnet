@@ -15,7 +15,7 @@ public class AircraftVariantRepository : IAircraftVariantRepository
     public async Task<AircraftVariant?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
         return await _db.AircraftVariants
-            .Include(x => x.Model)
+            .Include(x => x.Model_)
             .Include(x => x.EngineType)
             .Include(x => x.AvionicsSuite)
             .Include(x => x.Apu)
@@ -27,7 +27,7 @@ public class AircraftVariantRepository : IAircraftVariantRepository
     {
         return await _db.AircraftVariants
             .AsNoTracking()
-            .Include(x => x.Model)
+            .Include(x => x.Model_)
             .Include(x => x.EngineType)
             .Include(x => x.AvionicsSuite)
             .Include(x => x.Apu)

@@ -17,8 +17,8 @@ public interface ISalesCampaignService {
     // -------------------------------
     Task<bool> AssignRegion(AssociationRequest request, CancellationToken cancellationToken);
     Task<bool> UnassignRegion(AssociationRequest request, CancellationToken cancellationToken);
-    Task<bool> AssignOperator(AssociationRequest request, CancellationToken cancellationToken);
-    Task<bool> UnassignOperator(AssociationRequest request, CancellationToken cancellationToken);
+    Task<bool> AssignOperator_(AssociationRequest request, CancellationToken cancellationToken);
+    Task<bool> UnassignOperator_(AssociationRequest request, CancellationToken cancellationToken);
 
     Task<bool> AddToQuotes(MultipleAssociationRequest request, CancellationToken cancellationToken);
     Task<bool> RemoveFromQuotes(MultipleAssociationRequest request, CancellationToken cancellationToken);
@@ -107,10 +107,10 @@ public class SalesCampaignService : ISalesCampaignService
         return true;
     }
 
-    public async Task<bool> AssignOperator(AssociationRequest request, CancellationToken cancellationToken) {
+    public async Task<bool> AssignOperator_(AssociationRequest request, CancellationToken cancellationToken) {
         return true;
     }
-    public async Task<bool> UnassignOperator(AssociationRequest request, CancellationToken cancellationToken) {
+    public async Task<bool> UnassignOperator_(AssociationRequest request, CancellationToken cancellationToken) {
         return true;
     }
 

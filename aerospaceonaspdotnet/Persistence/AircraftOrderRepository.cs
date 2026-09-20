@@ -15,7 +15,7 @@ public class AircraftOrderRepository : IAircraftOrderRepository
     public async Task<AircraftOrder?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
         return await _db.AircraftOrders
-            .Include(x => x.Operator)
+            .Include(x => x.Operator_)
             .Include(x => x.Variant)
             .Include(x => x.Quote)
             .Include(x => x.PurchaseAgreement)
@@ -26,7 +26,7 @@ public class AircraftOrderRepository : IAircraftOrderRepository
     {
         return await _db.AircraftOrders
             .AsNoTracking()
-            .Include(x => x.Operator)
+            .Include(x => x.Operator_)
             .Include(x => x.Variant)
             .Include(x => x.Quote)
             .Include(x => x.PurchaseAgreement)

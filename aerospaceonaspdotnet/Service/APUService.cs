@@ -57,7 +57,7 @@ public class APUService : IAPUService
             {
                 return false;
             }
-            existing.Model = model.Model;
+            existing.Model_ = model.Model_;
 
             await _repository.UpdateAsync(existing, cancellationToken);
         }

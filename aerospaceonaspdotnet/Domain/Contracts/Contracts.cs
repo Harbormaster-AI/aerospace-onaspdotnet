@@ -147,14 +147,14 @@ public class AvionicsSuiteResponse : AvionicsSuiteRequest {
 
 public class APURequest {
     public Guid Id { get; set; } = Guid.NewGuid();
- public virtual string? Model { get; set; } 
+ public virtual string? Model_ { get; set; } 
 }
 
 public class APUResponse : APURequest {
     public static APUResponse FromModel(APU model) {
         return new APUResponse {
             Id = model.Id,
-            Model = model.Model,
+            Model_ = model.Model_,
         };
     }
 }
@@ -361,16 +361,16 @@ public class InventoryItemResponse : InventoryItemRequest {
     }
 }
 
-public class OperatorRequest {
+public class Operator_Request {
     public Guid Id { get; set; } = Guid.NewGuid();
  public virtual string? Name { get; set; } 
  public virtual string? IcaoDesignator { get; set; } 
  public virtual OperatorType? OperatorType { get; set; } 
 }
 
-public class OperatorResponse : OperatorRequest {
-    public static OperatorResponse FromModel(Operator model) {
-        return new OperatorResponse {
+public class Operator_Response : Operator_Request {
+    public static Operator_Response FromModel(Operator_ model) {
+        return new Operator_Response {
             Id = model.Id,
             Name = model.Name,
             IcaoDesignator = model.IcaoDesignator,

@@ -16,8 +16,8 @@ public static class AircraftVariantEndpoints
         group.MapPost("/update", Update);
         group.MapPost("/delete", Delete);
 
-        group.MapPut("/assignModel", AssignModel);
-        group.MapPut("/unassignModel", UnassignModel);
+        group.MapPut("/assignModel_", AssignModel_);
+        group.MapPut("/unassignModel_", UnassignModel_);
         group.MapPut("/assignEngineType", AssignEngineType);
         group.MapPut("/unassignEngineType", UnassignEngineType);
         group.MapPut("/assignAvionicsSuite", AssignAvionicsSuite);
@@ -104,19 +104,19 @@ public static class AircraftVariantEndpoints
         return deleted ? Results.NoContent() : Results.NotFound();
     }
 
-    private static async Task<IResult> AssignModel(
+    private static async Task<IResult> AssignModel_(
         AssociationRequest request,
         IAircraftVariantService service,
         CancellationToken cancellationToken) {
-        var assigned = await service.AssignModel(request, cancellationToken);
+        var assigned = await service.AssignModel_(request, cancellationToken);
         return assigned ? Results.NoContent() : Results.NotFound();
     }
 
-    private static async Task<IResult> UnassignModel(
+    private static async Task<IResult> UnassignModel_(
     AssociationRequest request,
     IAircraftVariantService service,
     CancellationToken cancellationToken) {
-        var unassigned = await service.UnassignModel(request, cancellationToken);
+        var unassigned = await service.UnassignModel_(request, cancellationToken);
         return unassigned ? Results.NoContent() : Results.NotFound();
     }
 

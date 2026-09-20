@@ -17,8 +17,8 @@ public interface IAircraftService {
     // -------------------------------
     Task<bool> AssignVariant(AssociationRequest request, CancellationToken cancellationToken);
     Task<bool> UnassignVariant(AssociationRequest request, CancellationToken cancellationToken);
-    Task<bool> AssignOperator(AssociationRequest request, CancellationToken cancellationToken);
-    Task<bool> UnassignOperator(AssociationRequest request, CancellationToken cancellationToken);
+    Task<bool> AssignOperator_(AssociationRequest request, CancellationToken cancellationToken);
+    Task<bool> UnassignOperator_(AssociationRequest request, CancellationToken cancellationToken);
     Task<bool> AssignRegistration(AssociationRequest request, CancellationToken cancellationToken);
     Task<bool> UnassignRegistration(AssociationRequest request, CancellationToken cancellationToken);
     Task<bool> AssignWarranty(AssociationRequest request, CancellationToken cancellationToken);
@@ -119,10 +119,10 @@ public class AircraftService : IAircraftService
         return true;
     }
 
-    public async Task<bool> AssignOperator(AssociationRequest request, CancellationToken cancellationToken) {
+    public async Task<bool> AssignOperator_(AssociationRequest request, CancellationToken cancellationToken) {
         return true;
     }
-    public async Task<bool> UnassignOperator(AssociationRequest request, CancellationToken cancellationToken) {
+    public async Task<bool> UnassignOperator_(AssociationRequest request, CancellationToken cancellationToken) {
         return true;
     }
 

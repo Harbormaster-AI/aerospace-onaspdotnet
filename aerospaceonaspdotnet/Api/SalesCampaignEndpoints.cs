@@ -18,8 +18,8 @@ public static class SalesCampaignEndpoints
 
         group.MapPut("/assignRegion", AssignRegion);
         group.MapPut("/unassignRegion", UnassignRegion);
-        group.MapPut("/assignOperator", AssignOperator);
-        group.MapPut("/unassignOperator", UnassignOperator);
+        group.MapPut("/assignOperator_", AssignOperator_);
+        group.MapPut("/unassignOperator_", UnassignOperator_);
 
     group.MapPut("/addToQuotes", AddToQuotes);
     group.MapPut("/removeFromQuotes", RemoveFromQuotes);
@@ -108,19 +108,19 @@ public static class SalesCampaignEndpoints
         return unassigned ? Results.NoContent() : Results.NotFound();
     }
 
-    private static async Task<IResult> AssignOperator(
+    private static async Task<IResult> AssignOperator_(
         AssociationRequest request,
         ISalesCampaignService service,
         CancellationToken cancellationToken) {
-        var assigned = await service.AssignOperator(request, cancellationToken);
+        var assigned = await service.AssignOperator_(request, cancellationToken);
         return assigned ? Results.NoContent() : Results.NotFound();
     }
 
-    private static async Task<IResult> UnassignOperator(
+    private static async Task<IResult> UnassignOperator_(
     AssociationRequest request,
     ISalesCampaignService service,
     CancellationToken cancellationToken) {
-        var unassigned = await service.UnassignOperator(request, cancellationToken);
+        var unassigned = await service.UnassignOperator_(request, cancellationToken);
         return unassigned ? Results.NoContent() : Results.NotFound();
     }
 

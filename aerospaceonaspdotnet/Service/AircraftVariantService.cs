@@ -15,8 +15,8 @@ public interface IAircraftVariantService {
     // ------------------------------
     // Single Associations
     // -------------------------------
-    Task<bool> AssignModel(AssociationRequest request, CancellationToken cancellationToken);
-    Task<bool> UnassignModel(AssociationRequest request, CancellationToken cancellationToken);
+    Task<bool> AssignModel_(AssociationRequest request, CancellationToken cancellationToken);
+    Task<bool> UnassignModel_(AssociationRequest request, CancellationToken cancellationToken);
     Task<bool> AssignEngineType(AssociationRequest request, CancellationToken cancellationToken);
     Task<bool> UnassignEngineType(AssociationRequest request, CancellationToken cancellationToken);
     Task<bool> AssignAvionicsSuite(AssociationRequest request, CancellationToken cancellationToken);
@@ -114,10 +114,10 @@ public class AircraftVariantService : IAircraftVariantService
 
     }
 
-    public async Task<bool> AssignModel(AssociationRequest request, CancellationToken cancellationToken) {
+    public async Task<bool> AssignModel_(AssociationRequest request, CancellationToken cancellationToken) {
         return true;
     }
-    public async Task<bool> UnassignModel(AssociationRequest request, CancellationToken cancellationToken) {
+    public async Task<bool> UnassignModel_(AssociationRequest request, CancellationToken cancellationToken) {
         return true;
     }
 

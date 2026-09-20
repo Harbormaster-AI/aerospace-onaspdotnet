@@ -10,7 +10,7 @@ public class AircraftVariant
  public virtual string? VariantCode { get; set; } 
  public virtual int? RangeNm { get; set; } 
  public virtual decimal? MaxTakeoffWeightKg { get; set; } 
-public virtual AircraftModel? Model { get; set; } 
+public virtual AircraftModel? Model_ { get; set; } 
 public virtual EngineType? EngineType { get; set; } 
 public virtual AvionicsSuite? AvionicsSuite { get; set; } 
 public virtual APU? Apu { get; set; } 

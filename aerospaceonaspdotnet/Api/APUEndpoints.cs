@@ -126,7 +126,7 @@ public static class APUEndpoints
         var model = new APU
         {
             Id = request.Id,
-            Model = request.Model,
+            Model_ = request.Model_,
         };
         return model;
     }

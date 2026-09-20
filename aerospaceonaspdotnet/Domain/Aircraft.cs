@@ -10,7 +10,7 @@ public class Aircraft
  public virtual MSN? Msn { get; set; } 
  public virtual DateOnly? DeliveryDate { get; set; } 
 public virtual AircraftVariant? Variant { get; set; } 
-public virtual Operator? Operator { get; set; } 
+public virtual Operator_? Operator_ { get; set; } 
 public virtual Registration? Registration { get; set; } 
 public virtual Warranty? Warranty { get; set; } 
 public virtual ICollection<MaintenanceWorkOrder> MaintenanceRecords { get; set; } = new List<MaintenanceWorkOrder>();

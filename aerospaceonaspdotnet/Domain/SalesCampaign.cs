@@ -9,7 +9,7 @@ public class SalesCampaign
  public virtual long? SalescampaignId { get; set; } 
  public virtual string? CampaignCode { get; set; } 
 public virtual SalesRegion? Region { get; set; } 
-public virtual Operator? Operator { get; set; } 
+public virtual Operator_? Operator_ { get; set; } 
 public virtual ICollection<Quote> Quotes { get; set; } = new List<Quote>();
  public virtual SalesCampaignStatus? Status { get; set; } 
 
