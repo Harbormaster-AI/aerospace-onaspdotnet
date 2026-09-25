@@ -1,4 +1,7 @@
+
+using aerospaceonaspdotnet.Contracts;
 using aerospaceonaspdotnet.Domain;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace aerospaceonaspdotnet.Persistence;
@@ -42,4 +45,41 @@ public class WarehouseRepository : IWarehouseRepository
         _db.Warehouses.Remove(warehouse);
         await _db.SaveChangesAsync(cancellationToken);
     }
+
+
+    public async Task AddToInventoryItemsAsync(
+        MultipleAssociationRequest request,
+        CancellationToken cancellationToken)
+    {
+        await _db.InventoryItems
+            .Where(inventoryItem =>
+                request.ChildIds.Contains(inventoryItem.Id))
+            .ExecuteUpdateAsync(setters =>
+                setters.SetProperty(
+                    inventoryItem =>
+                        EF.Property<Guid?>(
+                            inventoryItem,
+                            "SalesCampaign_Id"),
+                    request.ParentId));
+    }
+
+    public async Task RemoveFromInventoryItemsAsync(
+        MultipleAssociationRequest request,
+        CancellationToken cancellationToken)
+    {
+        await _db.InventoryItems
+            .Where(inventoryItem =>
+                request.ChildIds.Contains(inventoryItem.Id) &&
+                EF.Property<Guid?>(
+                    inventoryItem,
+                    "SalesCampaign_Id") == request.ParentId)
+            .ExecuteUpdateAsync(setters =>
+                setters.SetProperty(
+                    inventoryItem =>
+                        EF.Property<Guid?>(
+                            inventoryItem,
+                            "SalesCampaign_Id"),
+                    (Guid?)null));
+    }
+
 }

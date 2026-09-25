@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace aerospaceonaspdotnet.Domain;
 
+
     [ComplexType]
     public record MSN(
     string Value

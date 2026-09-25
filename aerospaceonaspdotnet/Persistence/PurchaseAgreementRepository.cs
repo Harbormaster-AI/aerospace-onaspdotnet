@@ -1,4 +1,7 @@
+
+using aerospaceonaspdotnet.Contracts;
 using aerospaceonaspdotnet.Domain;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace aerospaceonaspdotnet.Persistence;
@@ -44,4 +47,5 @@ public class PurchaseAgreementRepository : IPurchaseAgreementRepository
         _db.PurchaseAgreements.Remove(purchaseAgreement);
         await _db.SaveChangesAsync(cancellationToken);
     }
+
 }

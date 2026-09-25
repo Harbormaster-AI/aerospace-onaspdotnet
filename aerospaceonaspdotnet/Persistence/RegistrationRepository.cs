@@ -1,4 +1,7 @@
+
+using aerospaceonaspdotnet.Contracts;
 using aerospaceonaspdotnet.Domain;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace aerospaceonaspdotnet.Persistence;
@@ -44,4 +47,5 @@ public class RegistrationRepository : IRegistrationRepository
         _db.Registrations.Remove(registration);
         await _db.SaveChangesAsync(cancellationToken);
     }
+
 }

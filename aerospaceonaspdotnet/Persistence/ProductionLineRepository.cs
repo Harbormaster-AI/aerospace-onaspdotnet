@@ -1,4 +1,7 @@
+
+using aerospaceonaspdotnet.Contracts;
 using aerospaceonaspdotnet.Domain;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace aerospaceonaspdotnet.Persistence;
@@ -44,4 +47,41 @@ public class ProductionLineRepository : IProductionLineRepository
         _db.ProductionLines.Remove(productionLine);
         await _db.SaveChangesAsync(cancellationToken);
     }
+
+
+    public async Task AddToWorkCentersAsync(
+        MultipleAssociationRequest request,
+        CancellationToken cancellationToken)
+    {
+        await _db.WorkCenters
+            .Where(workCenter =>
+                request.ChildIds.Contains(workCenter.Id))
+            .ExecuteUpdateAsync(setters =>
+                setters.SetProperty(
+                    workCenter =>
+                        EF.Property<Guid?>(
+                            workCenter,
+                            "SalesCampaign_Id"),
+                    request.ParentId));
+    }
+
+    public async Task RemoveFromWorkCentersAsync(
+        MultipleAssociationRequest request,
+        CancellationToken cancellationToken)
+    {
+        await _db.WorkCenters
+            .Where(workCenter =>
+                request.ChildIds.Contains(workCenter.Id) &&
+                EF.Property<Guid?>(
+                    workCenter,
+                    "SalesCampaign_Id") == request.ParentId)
+            .ExecuteUpdateAsync(setters =>
+                setters.SetProperty(
+                    workCenter =>
+                        EF.Property<Guid?>(
+                            workCenter,
+                            "SalesCampaign_Id"),
+                    (Guid?)null));
+    }
+
 }

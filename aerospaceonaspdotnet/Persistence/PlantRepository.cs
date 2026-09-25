@@ -1,4 +1,7 @@
+
+using aerospaceonaspdotnet.Contracts;
 using aerospaceonaspdotnet.Domain;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace aerospaceonaspdotnet.Persistence;
@@ -44,4 +47,77 @@ public class PlantRepository : IPlantRepository
         _db.Plants.Remove(plant);
         await _db.SaveChangesAsync(cancellationToken);
     }
+
+
+    public async Task AddToProductionLinesAsync(
+        MultipleAssociationRequest request,
+        CancellationToken cancellationToken)
+    {
+        await _db.ProductionLines
+            .Where(productionLine =>
+                request.ChildIds.Contains(productionLine.Id))
+            .ExecuteUpdateAsync(setters =>
+                setters.SetProperty(
+                    productionLine =>
+                        EF.Property<Guid?>(
+                            productionLine,
+                            "SalesCampaign_Id"),
+                    request.ParentId));
+    }
+
+    public async Task RemoveFromProductionLinesAsync(
+        MultipleAssociationRequest request,
+        CancellationToken cancellationToken)
+    {
+        await _db.ProductionLines
+            .Where(productionLine =>
+                request.ChildIds.Contains(productionLine.Id) &&
+                EF.Property<Guid?>(
+                    productionLine,
+                    "SalesCampaign_Id") == request.ParentId)
+            .ExecuteUpdateAsync(setters =>
+                setters.SetProperty(
+                    productionLine =>
+                        EF.Property<Guid?>(
+                            productionLine,
+                            "SalesCampaign_Id"),
+                    (Guid?)null));
+    }
+
+
+    public async Task AddToWarehousesAsync(
+        MultipleAssociationRequest request,
+        CancellationToken cancellationToken)
+    {
+        await _db.Warehouses
+            .Where(warehouse =>
+                request.ChildIds.Contains(warehouse.Id))
+            .ExecuteUpdateAsync(setters =>
+                setters.SetProperty(
+                    warehouse =>
+                        EF.Property<Guid?>(
+                            warehouse,
+                            "SalesCampaign_Id"),
+                    request.ParentId));
+    }
+
+    public async Task RemoveFromWarehousesAsync(
+        MultipleAssociationRequest request,
+        CancellationToken cancellationToken)
+    {
+        await _db.Warehouses
+            .Where(warehouse =>
+                request.ChildIds.Contains(warehouse.Id) &&
+                EF.Property<Guid?>(
+                    warehouse,
+                    "SalesCampaign_Id") == request.ParentId)
+            .ExecuteUpdateAsync(setters =>
+                setters.SetProperty(
+                    warehouse =>
+                        EF.Property<Guid?>(
+                            warehouse,
+                            "SalesCampaign_Id"),
+                    (Guid?)null));
+    }
+
 }

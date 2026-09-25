@@ -1,4 +1,7 @@
+
+using aerospaceonaspdotnet.Contracts;
 using aerospaceonaspdotnet.Domain;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace aerospaceonaspdotnet.Persistence;
@@ -54,4 +57,41 @@ public class AircraftRepository : IAircraftRepository
         _db.Aircrafts.Remove(aircraft);
         await _db.SaveChangesAsync(cancellationToken);
     }
+
+
+    public async Task AddToMaintenanceRecordsAsync(
+        MultipleAssociationRequest request,
+        CancellationToken cancellationToken)
+    {
+        await _db.MaintenanceWorkOrders
+            .Where(maintenanceWorkOrder =>
+                request.ChildIds.Contains(maintenanceWorkOrder.Id))
+            .ExecuteUpdateAsync(setters =>
+                setters.SetProperty(
+                    maintenanceWorkOrder =>
+                        EF.Property<Guid?>(
+                            maintenanceWorkOrder,
+                            "SalesCampaign_Id"),
+                    request.ParentId));
+    }
+
+    public async Task RemoveFromMaintenanceRecordsAsync(
+        MultipleAssociationRequest request,
+        CancellationToken cancellationToken)
+    {
+        await _db.MaintenanceWorkOrders
+            .Where(maintenanceWorkOrder =>
+                request.ChildIds.Contains(maintenanceWorkOrder.Id) &&
+                EF.Property<Guid?>(
+                    maintenanceWorkOrder,
+                    "SalesCampaign_Id") == request.ParentId)
+            .ExecuteUpdateAsync(setters =>
+                setters.SetProperty(
+                    maintenanceWorkOrder =>
+                        EF.Property<Guid?>(
+                            maintenanceWorkOrder,
+                            "SalesCampaign_Id"),
+                    (Guid?)null));
+    }
+
 }

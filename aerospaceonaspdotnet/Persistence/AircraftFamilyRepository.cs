@@ -1,4 +1,7 @@
+
+using aerospaceonaspdotnet.Contracts;
 using aerospaceonaspdotnet.Domain;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace aerospaceonaspdotnet.Persistence;
@@ -44,4 +47,41 @@ public class AircraftFamilyRepository : IAircraftFamilyRepository
         _db.AircraftFamilys.Remove(aircraftFamily);
         await _db.SaveChangesAsync(cancellationToken);
     }
+
+
+    public async Task AddToAircraftModelsAsync(
+        MultipleAssociationRequest request,
+        CancellationToken cancellationToken)
+    {
+        await _db.AircraftModels
+            .Where(aircraftModel =>
+                request.ChildIds.Contains(aircraftModel.Id))
+            .ExecuteUpdateAsync(setters =>
+                setters.SetProperty(
+                    aircraftModel =>
+                        EF.Property<Guid?>(
+                            aircraftModel,
+                            "SalesCampaign_Id"),
+                    request.ParentId));
+    }
+
+    public async Task RemoveFromAircraftModelsAsync(
+        MultipleAssociationRequest request,
+        CancellationToken cancellationToken)
+    {
+        await _db.AircraftModels
+            .Where(aircraftModel =>
+                request.ChildIds.Contains(aircraftModel.Id) &&
+                EF.Property<Guid?>(
+                    aircraftModel,
+                    "SalesCampaign_Id") == request.ParentId)
+            .ExecuteUpdateAsync(setters =>
+                setters.SetProperty(
+                    aircraftModel =>
+                        EF.Property<Guid?>(
+                            aircraftModel,
+                            "SalesCampaign_Id"),
+                    (Guid?)null));
+    }
+
 }

@@ -1,4 +1,5 @@
 using aerospaceonaspdotnet.Domain;
+using aerospaceonaspdotnet.Contracts;
 
 namespace aerospaceonaspdotnet.Persistence;
 
@@ -9,4 +10,6 @@ public interface IWarrantyRepository
     Task AddAsync(Warranty warranty, CancellationToken cancellationToken);
     Task UpdateAsync(Warranty warranty, CancellationToken cancellationToken);
     Task DeleteAsync(Warranty warranty, CancellationToken cancellationToken);
+
+
 }

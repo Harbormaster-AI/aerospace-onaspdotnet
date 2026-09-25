@@ -1,4 +1,5 @@
 using aerospaceonaspdotnet.Domain;
+using aerospaceonaspdotnet.Contracts;
 
 namespace aerospaceonaspdotnet.Persistence;
 
@@ -9,4 +10,6 @@ public interface IFlightHealthEventRepository
     Task AddAsync(FlightHealthEvent flightHealthEvent, CancellationToken cancellationToken);
     Task UpdateAsync(FlightHealthEvent flightHealthEvent, CancellationToken cancellationToken);
     Task DeleteAsync(FlightHealthEvent flightHealthEvent, CancellationToken cancellationToken);
+
+
 }

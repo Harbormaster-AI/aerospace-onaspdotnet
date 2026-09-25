@@ -1,4 +1,7 @@
+
+using aerospaceonaspdotnet.Contracts;
 using aerospaceonaspdotnet.Domain;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace aerospaceonaspdotnet.Persistence;
@@ -42,4 +45,77 @@ public class SalesRegionRepository : ISalesRegionRepository
         _db.SalesRegions.Remove(salesRegion);
         await _db.SaveChangesAsync(cancellationToken);
     }
+
+
+    public async Task AddToOperatorsAsync(
+        MultipleAssociationRequest request,
+        CancellationToken cancellationToken)
+    {
+        await _db.Operator_s
+            .Where(operator_ =>
+                request.ChildIds.Contains(operator_.Id))
+            .ExecuteUpdateAsync(setters =>
+                setters.SetProperty(
+                    operator_ =>
+                        EF.Property<Guid?>(
+                            operator_,
+                            "SalesCampaign_Id"),
+                    request.ParentId));
+    }
+
+    public async Task RemoveFromOperatorsAsync(
+        MultipleAssociationRequest request,
+        CancellationToken cancellationToken)
+    {
+        await _db.Operator_s
+            .Where(operator_ =>
+                request.ChildIds.Contains(operator_.Id) &&
+                EF.Property<Guid?>(
+                    operator_,
+                    "SalesCampaign_Id") == request.ParentId)
+            .ExecuteUpdateAsync(setters =>
+                setters.SetProperty(
+                    operator_ =>
+                        EF.Property<Guid?>(
+                            operator_,
+                            "SalesCampaign_Id"),
+                    (Guid?)null));
+    }
+
+
+    public async Task AddToSalesCampaignsAsync(
+        MultipleAssociationRequest request,
+        CancellationToken cancellationToken)
+    {
+        await _db.SalesCampaigns
+            .Where(salesCampaign =>
+                request.ChildIds.Contains(salesCampaign.Id))
+            .ExecuteUpdateAsync(setters =>
+                setters.SetProperty(
+                    salesCampaign =>
+                        EF.Property<Guid?>(
+                            salesCampaign,
+                            "SalesCampaign_Id"),
+                    request.ParentId));
+    }
+
+    public async Task RemoveFromSalesCampaignsAsync(
+        MultipleAssociationRequest request,
+        CancellationToken cancellationToken)
+    {
+        await _db.SalesCampaigns
+            .Where(salesCampaign =>
+                request.ChildIds.Contains(salesCampaign.Id) &&
+                EF.Property<Guid?>(
+                    salesCampaign,
+                    "SalesCampaign_Id") == request.ParentId)
+            .ExecuteUpdateAsync(setters =>
+                setters.SetProperty(
+                    salesCampaign =>
+                        EF.Property<Guid?>(
+                            salesCampaign,
+                            "SalesCampaign_Id"),
+                    (Guid?)null));
+    }
+
 }

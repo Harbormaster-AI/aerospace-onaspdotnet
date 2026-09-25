@@ -1,4 +1,7 @@
+
+using aerospaceonaspdotnet.Contracts;
 using aerospaceonaspdotnet.Domain;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace aerospaceonaspdotnet.Persistence;
@@ -48,4 +51,5 @@ public class MaintenanceAppointmentRepository : IMaintenanceAppointmentRepositor
         _db.MaintenanceAppointments.Remove(maintenanceAppointment);
         await _db.SaveChangesAsync(cancellationToken);
     }
+
 }

@@ -1,6 +1,8 @@
+
 using aerospaceonaspdotnet.Domain;
 using aerospaceonaspdotnet.Persistence;
 using aerospaceonaspdotnet.Contracts;
+using aerospaceonaspdotnet.Telemetry;
 
 namespace aerospaceonaspdotnet.Service;
 
@@ -11,7 +13,6 @@ public interface IAircraftOptionService {
     Task<AircraftOption?> Get(IdentifierRequest identifier, CancellationToken cancellationToken);
     Task<IReadOnlyList<AircraftOption>> GetAll(CancellationToken cancellationToken);
     Task<bool> Delete(IdentifierRequest identifier, CancellationToken cancellationToken);
-
     // ------------------------------
     // Single Associations
     // -------------------------------
@@ -25,26 +26,38 @@ public interface IAircraftOptionService {
 
 public class AircraftOptionService : IAircraftOptionService
 {
+    private readonly ApplicationTelemetry _telemetry;
     private readonly IAircraftOptionRepository _repository;
     private readonly ILogger<AircraftOptionService> _logger;
+    private readonly IServiceResolver _serviceResolver;
+
 
     public AircraftOptionService(
-        IAircraftOptionRepository repository, ILogger<AircraftOptionService> logger )
+        ApplicationTelemetry telemetry,
+        IAircraftOptionRepository repository,
+        ILogger<AircraftOptionService> logger,
+        IServiceResolver serviceResolver)
     {
+        _telemetry = telemetry;
         _repository = repository;
         _logger = logger;
+        _serviceResolver = serviceResolver;
     }
-
 
     public async Task Create(AircraftOption model, CancellationToken cancellationToken)
     {
         try
         {
-            await _repository.AddAsync(model, cancellationToken);
+            await _telemetry.Execute(
+                "AircraftOption",
+                "CreateAircraftOption",
+                () => _repository.AddAsync(model, cancellationToken));
         }
         catch (Exception ex)
         {
-            _logger.LogError($"Unexpected Error: {ex.Message}");
+            _logger.LogError(
+                    ex,
+                    "Unexpected error while creating Transaction.");
         }
     }
 
@@ -60,11 +73,16 @@ public class AircraftOptionService : IAircraftOptionService
             existing.Name = model.Name;
             existing.OptionCategory = model.OptionCategory;
 
-            await _repository.UpdateAsync(existing, cancellationToken);
+            await _telemetry.Execute(
+                "AircraftOption",
+                "UpdateAircraftOption",
+                () => _repository.UpdateAsync(existing, cancellationToken));
         }
         catch (Exception ex)
         {
-            _logger.LogError($"Unexpected Error: {ex.Message}");
+            _logger.LogError(
+                    ex,
+                    "Unexpected error while creating Transaction.");
             return false;
         }
         return true;
@@ -86,29 +104,87 @@ public class AircraftOptionService : IAircraftOptionService
 
         try
         {
-            await _repository.DeleteAsync(existing, cancellationToken);
+            await _telemetry.Execute(
+                "AircraftOption",
+                "UpdateAircraftOption",
+                () => _repository.DeleteAsync(existing, cancellationToken));
         }
         catch (Exception ex)
         {
-            _logger.LogError($"Unexpected Error: {ex.Message}");
+            _logger.LogError(
+                    ex,
+                    "Unexpected error while creating Transaction.");
             return false;
         }
         return true;
-
     }
 
 
     public async Task<bool> AddToVariants(MultipleAssociationRequest request, CancellationToken cancellationToken) {
+        try {
+            await _telemetry.Execute(
+                "AircraftOption",
+                "AddToVariants",
+                () => _repository.AddToVariantsAsync(request, cancellationToken));
+        }
+        catch (Exception ex)
+        {
+           _logger.LogError(
+                   ex,
+                   "Unexpected error while creating Transaction.");
+            return false;
+        }
         return true;
     }
+
     public async Task<bool> RemoveFromVariants(MultipleAssociationRequest request, CancellationToken cancellationToken) {
+        try {
+            await _telemetry.Execute(
+                "AircraftOption",
+                "RemoveFromVariants",
+                () => _repository.RemoveFromVariantsAsync(request, cancellationToken));
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(
+                    ex,
+                    "Unexpected error while creating Transaction.");
+            return false;
+        }
         return true;
     }
 
     public async Task<bool> AddToPackages(MultipleAssociationRequest request, CancellationToken cancellationToken) {
+        try {
+            await _telemetry.Execute(
+                "AircraftOption",
+                "AddToPackages",
+                () => _repository.AddToPackagesAsync(request, cancellationToken));
+        }
+        catch (Exception ex)
+        {
+           _logger.LogError(
+                   ex,
+                   "Unexpected error while creating Transaction.");
+            return false;
+        }
         return true;
     }
+
     public async Task<bool> RemoveFromPackages(MultipleAssociationRequest request, CancellationToken cancellationToken) {
+        try {
+            await _telemetry.Execute(
+                "AircraftOption",
+                "RemoveFromPackages",
+                () => _repository.RemoveFromPackagesAsync(request, cancellationToken));
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(
+                    ex,
+                    "Unexpected error while creating Transaction.");
+            return false;
+        }
         return true;
     }
 

@@ -1,4 +1,5 @@
 using aerospaceonaspdotnet.Domain;
+using aerospaceonaspdotnet.Contracts;
 
 namespace aerospaceonaspdotnet.Persistence;
 
@@ -9,4 +10,6 @@ public interface ITypeCertificateRepository
     Task AddAsync(TypeCertificate typeCertificate, CancellationToken cancellationToken);
     Task UpdateAsync(TypeCertificate typeCertificate, CancellationToken cancellationToken);
     Task DeleteAsync(TypeCertificate typeCertificate, CancellationToken cancellationToken);
+
+
 }

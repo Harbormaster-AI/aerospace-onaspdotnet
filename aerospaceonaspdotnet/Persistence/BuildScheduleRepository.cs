@@ -1,4 +1,7 @@
+
+using aerospaceonaspdotnet.Contracts;
 using aerospaceonaspdotnet.Domain;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace aerospaceonaspdotnet.Persistence;
@@ -42,4 +45,41 @@ public class BuildScheduleRepository : IBuildScheduleRepository
         _db.BuildSchedules.Remove(buildSchedule);
         await _db.SaveChangesAsync(cancellationToken);
     }
+
+
+    public async Task AddToProductionOrdersAsync(
+        MultipleAssociationRequest request,
+        CancellationToken cancellationToken)
+    {
+        await _db.ProductionOrders
+            .Where(productionOrder =>
+                request.ChildIds.Contains(productionOrder.Id))
+            .ExecuteUpdateAsync(setters =>
+                setters.SetProperty(
+                    productionOrder =>
+                        EF.Property<Guid?>(
+                            productionOrder,
+                            "SalesCampaign_Id"),
+                    request.ParentId));
+    }
+
+    public async Task RemoveFromProductionOrdersAsync(
+        MultipleAssociationRequest request,
+        CancellationToken cancellationToken)
+    {
+        await _db.ProductionOrders
+            .Where(productionOrder =>
+                request.ChildIds.Contains(productionOrder.Id) &&
+                EF.Property<Guid?>(
+                    productionOrder,
+                    "SalesCampaign_Id") == request.ParentId)
+            .ExecuteUpdateAsync(setters =>
+                setters.SetProperty(
+                    productionOrder =>
+                        EF.Property<Guid?>(
+                            productionOrder,
+                            "SalesCampaign_Id"),
+                    (Guid?)null));
+    }
+
 }

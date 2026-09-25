@@ -1,4 +1,7 @@
+
+using aerospaceonaspdotnet.Contracts;
 using aerospaceonaspdotnet.Domain;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace aerospaceonaspdotnet.Persistence;
@@ -46,4 +49,41 @@ public class SalesCampaignRepository : ISalesCampaignRepository
         _db.SalesCampaigns.Remove(salesCampaign);
         await _db.SaveChangesAsync(cancellationToken);
     }
+
+
+    public async Task AddToQuotesAsync(
+        MultipleAssociationRequest request,
+        CancellationToken cancellationToken)
+    {
+        await _db.Quotes
+            .Where(quote =>
+                request.ChildIds.Contains(quote.Id))
+            .ExecuteUpdateAsync(setters =>
+                setters.SetProperty(
+                    quote =>
+                        EF.Property<Guid?>(
+                            quote,
+                            "SalesCampaign_Id"),
+                    request.ParentId));
+    }
+
+    public async Task RemoveFromQuotesAsync(
+        MultipleAssociationRequest request,
+        CancellationToken cancellationToken)
+    {
+        await _db.Quotes
+            .Where(quote =>
+                request.ChildIds.Contains(quote.Id) &&
+                EF.Property<Guid?>(
+                    quote,
+                    "SalesCampaign_Id") == request.ParentId)
+            .ExecuteUpdateAsync(setters =>
+                setters.SetProperty(
+                    quote =>
+                        EF.Property<Guid?>(
+                            quote,
+                            "SalesCampaign_Id"),
+                    (Guid?)null));
+    }
+
 }

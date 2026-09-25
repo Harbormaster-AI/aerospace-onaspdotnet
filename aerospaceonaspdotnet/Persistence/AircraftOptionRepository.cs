@@ -1,4 +1,7 @@
+
+using aerospaceonaspdotnet.Contracts;
 using aerospaceonaspdotnet.Domain;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace aerospaceonaspdotnet.Persistence;
@@ -42,4 +45,77 @@ public class AircraftOptionRepository : IAircraftOptionRepository
         _db.AircraftOptions.Remove(aircraftOption);
         await _db.SaveChangesAsync(cancellationToken);
     }
+
+
+    public async Task AddToVariantsAsync(
+        MultipleAssociationRequest request,
+        CancellationToken cancellationToken)
+    {
+        await _db.AircraftVariants
+            .Where(aircraftVariant =>
+                request.ChildIds.Contains(aircraftVariant.Id))
+            .ExecuteUpdateAsync(setters =>
+                setters.SetProperty(
+                    aircraftVariant =>
+                        EF.Property<Guid?>(
+                            aircraftVariant,
+                            "SalesCampaign_Id"),
+                    request.ParentId));
+    }
+
+    public async Task RemoveFromVariantsAsync(
+        MultipleAssociationRequest request,
+        CancellationToken cancellationToken)
+    {
+        await _db.AircraftVariants
+            .Where(aircraftVariant =>
+                request.ChildIds.Contains(aircraftVariant.Id) &&
+                EF.Property<Guid?>(
+                    aircraftVariant,
+                    "SalesCampaign_Id") == request.ParentId)
+            .ExecuteUpdateAsync(setters =>
+                setters.SetProperty(
+                    aircraftVariant =>
+                        EF.Property<Guid?>(
+                            aircraftVariant,
+                            "SalesCampaign_Id"),
+                    (Guid?)null));
+    }
+
+
+    public async Task AddToPackagesAsync(
+        MultipleAssociationRequest request,
+        CancellationToken cancellationToken)
+    {
+        await _db.AircraftPackages
+            .Where(aircraftPackage =>
+                request.ChildIds.Contains(aircraftPackage.Id))
+            .ExecuteUpdateAsync(setters =>
+                setters.SetProperty(
+                    aircraftPackage =>
+                        EF.Property<Guid?>(
+                            aircraftPackage,
+                            "SalesCampaign_Id"),
+                    request.ParentId));
+    }
+
+    public async Task RemoveFromPackagesAsync(
+        MultipleAssociationRequest request,
+        CancellationToken cancellationToken)
+    {
+        await _db.AircraftPackages
+            .Where(aircraftPackage =>
+                request.ChildIds.Contains(aircraftPackage.Id) &&
+                EF.Property<Guid?>(
+                    aircraftPackage,
+                    "SalesCampaign_Id") == request.ParentId)
+            .ExecuteUpdateAsync(setters =>
+                setters.SetProperty(
+                    aircraftPackage =>
+                        EF.Property<Guid?>(
+                            aircraftPackage,
+                            "SalesCampaign_Id"),
+                    (Guid?)null));
+    }
+
 }

@@ -1,4 +1,7 @@
+
+using aerospaceonaspdotnet.Contracts;
 using aerospaceonaspdotnet.Domain;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace aerospaceonaspdotnet.Persistence;
@@ -46,4 +49,5 @@ public class SoftwareLoadRepository : ISoftwareLoadRepository
         _db.SoftwareLoads.Remove(softwareLoad);
         await _db.SaveChangesAsync(cancellationToken);
     }
+
 }

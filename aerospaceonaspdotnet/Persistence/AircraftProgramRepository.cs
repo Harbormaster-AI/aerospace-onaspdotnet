@@ -1,4 +1,7 @@
+
+using aerospaceonaspdotnet.Contracts;
 using aerospaceonaspdotnet.Domain;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace aerospaceonaspdotnet.Persistence;
@@ -46,4 +49,77 @@ public class AircraftProgramRepository : IAircraftProgramRepository
         _db.AircraftPrograms.Remove(aircraftProgram);
         await _db.SaveChangesAsync(cancellationToken);
     }
+
+
+    public async Task AddToAircraftFamiliesAsync(
+        MultipleAssociationRequest request,
+        CancellationToken cancellationToken)
+    {
+        await _db.AircraftFamilys
+            .Where(aircraftFamily =>
+                request.ChildIds.Contains(aircraftFamily.Id))
+            .ExecuteUpdateAsync(setters =>
+                setters.SetProperty(
+                    aircraftFamily =>
+                        EF.Property<Guid?>(
+                            aircraftFamily,
+                            "SalesCampaign_Id"),
+                    request.ParentId));
+    }
+
+    public async Task RemoveFromAircraftFamiliesAsync(
+        MultipleAssociationRequest request,
+        CancellationToken cancellationToken)
+    {
+        await _db.AircraftFamilys
+            .Where(aircraftFamily =>
+                request.ChildIds.Contains(aircraftFamily.Id) &&
+                EF.Property<Guid?>(
+                    aircraftFamily,
+                    "SalesCampaign_Id") == request.ParentId)
+            .ExecuteUpdateAsync(setters =>
+                setters.SetProperty(
+                    aircraftFamily =>
+                        EF.Property<Guid?>(
+                            aircraftFamily,
+                            "SalesCampaign_Id"),
+                    (Guid?)null));
+    }
+
+
+    public async Task AddToKeySuppliersAsync(
+        MultipleAssociationRequest request,
+        CancellationToken cancellationToken)
+    {
+        await _db.Suppliers
+            .Where(supplier =>
+                request.ChildIds.Contains(supplier.Id))
+            .ExecuteUpdateAsync(setters =>
+                setters.SetProperty(
+                    supplier =>
+                        EF.Property<Guid?>(
+                            supplier,
+                            "SalesCampaign_Id"),
+                    request.ParentId));
+    }
+
+    public async Task RemoveFromKeySuppliersAsync(
+        MultipleAssociationRequest request,
+        CancellationToken cancellationToken)
+    {
+        await _db.Suppliers
+            .Where(supplier =>
+                request.ChildIds.Contains(supplier.Id) &&
+                EF.Property<Guid?>(
+                    supplier,
+                    "SalesCampaign_Id") == request.ParentId)
+            .ExecuteUpdateAsync(setters =>
+                setters.SetProperty(
+                    supplier =>
+                        EF.Property<Guid?>(
+                            supplier,
+                            "SalesCampaign_Id"),
+                    (Guid?)null));
+    }
+
 }

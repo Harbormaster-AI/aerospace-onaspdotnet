@@ -1,4 +1,7 @@
+
+using aerospaceonaspdotnet.Contracts;
 using aerospaceonaspdotnet.Domain;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace aerospaceonaspdotnet.Persistence;
@@ -44,4 +47,5 @@ public class WarrantyRepository : IWarrantyRepository
         _db.Warrantys.Remove(warranty);
         await _db.SaveChangesAsync(cancellationToken);
     }
+
 }

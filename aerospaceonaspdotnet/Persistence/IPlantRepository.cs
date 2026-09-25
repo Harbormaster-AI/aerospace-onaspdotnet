@@ -1,4 +1,5 @@
 using aerospaceonaspdotnet.Domain;
+using aerospaceonaspdotnet.Contracts;
 
 namespace aerospaceonaspdotnet.Persistence;
 
@@ -9,4 +10,10 @@ public interface IPlantRepository
     Task AddAsync(Plant plant, CancellationToken cancellationToken);
     Task UpdateAsync(Plant plant, CancellationToken cancellationToken);
     Task DeleteAsync(Plant plant, CancellationToken cancellationToken);
+
+    Task AddToProductionLinesAsync( MultipleAssociationRequest request, CancellationToken cancellationToken);
+    Task RemoveFromProductionLinesAsync( MultipleAssociationRequest request, CancellationToken cancellationToken);
+    Task AddToWarehousesAsync( MultipleAssociationRequest request, CancellationToken cancellationToken);
+    Task RemoveFromWarehousesAsync( MultipleAssociationRequest request, CancellationToken cancellationToken);
+
 }

@@ -1,4 +1,5 @@
 using aerospaceonaspdotnet.Domain;
+using aerospaceonaspdotnet.Contracts;
 
 namespace aerospaceonaspdotnet.Persistence;
 
@@ -9,4 +10,6 @@ public interface IRegistrationRepository
     Task AddAsync(Registration registration, CancellationToken cancellationToken);
     Task UpdateAsync(Registration registration, CancellationToken cancellationToken);
     Task DeleteAsync(Registration registration, CancellationToken cancellationToken);
+
+
 }

@@ -1,4 +1,7 @@
+
+using aerospaceonaspdotnet.Contracts;
 using aerospaceonaspdotnet.Domain;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace aerospaceonaspdotnet.Persistence;
@@ -44,4 +47,77 @@ public class AircraftModelRepository : IAircraftModelRepository
         _db.AircraftModels.Remove(aircraftModel);
         await _db.SaveChangesAsync(cancellationToken);
     }
+
+
+    public async Task AddToVariantsAsync(
+        MultipleAssociationRequest request,
+        CancellationToken cancellationToken)
+    {
+        await _db.AircraftVariants
+            .Where(aircraftVariant =>
+                request.ChildIds.Contains(aircraftVariant.Id))
+            .ExecuteUpdateAsync(setters =>
+                setters.SetProperty(
+                    aircraftVariant =>
+                        EF.Property<Guid?>(
+                            aircraftVariant,
+                            "SalesCampaign_Id"),
+                    request.ParentId));
+    }
+
+    public async Task RemoveFromVariantsAsync(
+        MultipleAssociationRequest request,
+        CancellationToken cancellationToken)
+    {
+        await _db.AircraftVariants
+            .Where(aircraftVariant =>
+                request.ChildIds.Contains(aircraftVariant.Id) &&
+                EF.Property<Guid?>(
+                    aircraftVariant,
+                    "SalesCampaign_Id") == request.ParentId)
+            .ExecuteUpdateAsync(setters =>
+                setters.SetProperty(
+                    aircraftVariant =>
+                        EF.Property<Guid?>(
+                            aircraftVariant,
+                            "SalesCampaign_Id"),
+                    (Guid?)null));
+    }
+
+
+    public async Task AddToEngineTypesAsync(
+        MultipleAssociationRequest request,
+        CancellationToken cancellationToken)
+    {
+        await _db.EngineTypes
+            .Where(engineType =>
+                request.ChildIds.Contains(engineType.Id))
+            .ExecuteUpdateAsync(setters =>
+                setters.SetProperty(
+                    engineType =>
+                        EF.Property<Guid?>(
+                            engineType,
+                            "SalesCampaign_Id"),
+                    request.ParentId));
+    }
+
+    public async Task RemoveFromEngineTypesAsync(
+        MultipleAssociationRequest request,
+        CancellationToken cancellationToken)
+    {
+        await _db.EngineTypes
+            .Where(engineType =>
+                request.ChildIds.Contains(engineType.Id) &&
+                EF.Property<Guid?>(
+                    engineType,
+                    "SalesCampaign_Id") == request.ParentId)
+            .ExecuteUpdateAsync(setters =>
+                setters.SetProperty(
+                    engineType =>
+                        EF.Property<Guid?>(
+                            engineType,
+                            "SalesCampaign_Id"),
+                    (Guid?)null));
+    }
+
 }

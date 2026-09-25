@@ -1,4 +1,5 @@
 using aerospaceonaspdotnet.Domain;
+using aerospaceonaspdotnet.Contracts;
 
 namespace aerospaceonaspdotnet.Persistence;
 
@@ -9,4 +10,6 @@ public interface IWorkCenterRepository
     Task AddAsync(WorkCenter workCenter, CancellationToken cancellationToken);
     Task UpdateAsync(WorkCenter workCenter, CancellationToken cancellationToken);
     Task DeleteAsync(WorkCenter workCenter, CancellationToken cancellationToken);
+
+
 }

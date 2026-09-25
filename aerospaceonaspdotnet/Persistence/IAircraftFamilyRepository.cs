@@ -1,4 +1,5 @@
 using aerospaceonaspdotnet.Domain;
+using aerospaceonaspdotnet.Contracts;
 
 namespace aerospaceonaspdotnet.Persistence;
 
@@ -9,4 +10,8 @@ public interface IAircraftFamilyRepository
     Task AddAsync(AircraftFamily aircraftFamily, CancellationToken cancellationToken);
     Task UpdateAsync(AircraftFamily aircraftFamily, CancellationToken cancellationToken);
     Task DeleteAsync(AircraftFamily aircraftFamily, CancellationToken cancellationToken);
+
+    Task AddToAircraftModelsAsync( MultipleAssociationRequest request, CancellationToken cancellationToken);
+    Task RemoveFromAircraftModelsAsync( MultipleAssociationRequest request, CancellationToken cancellationToken);
+
 }

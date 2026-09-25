@@ -1,4 +1,5 @@
 using aerospaceonaspdotnet.Domain;
+using aerospaceonaspdotnet.Contracts;
 
 namespace aerospaceonaspdotnet.Persistence;
 
@@ -9,4 +10,6 @@ public interface IPurchaseAgreementRepository
     Task AddAsync(PurchaseAgreement purchaseAgreement, CancellationToken cancellationToken);
     Task UpdateAsync(PurchaseAgreement purchaseAgreement, CancellationToken cancellationToken);
     Task DeleteAsync(PurchaseAgreement purchaseAgreement, CancellationToken cancellationToken);
+
+
 }

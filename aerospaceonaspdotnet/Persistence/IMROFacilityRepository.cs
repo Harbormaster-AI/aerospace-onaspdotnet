@@ -1,4 +1,5 @@
 using aerospaceonaspdotnet.Domain;
+using aerospaceonaspdotnet.Contracts;
 
 namespace aerospaceonaspdotnet.Persistence;
 
@@ -9,4 +10,10 @@ public interface IMROFacilityRepository
     Task AddAsync(MROFacility mROFacility, CancellationToken cancellationToken);
     Task UpdateAsync(MROFacility mROFacility, CancellationToken cancellationToken);
     Task DeleteAsync(MROFacility mROFacility, CancellationToken cancellationToken);
+
+    Task AddToAppointmentsAsync( MultipleAssociationRequest request, CancellationToken cancellationToken);
+    Task RemoveFromAppointmentsAsync( MultipleAssociationRequest request, CancellationToken cancellationToken);
+    Task AddToWorkOrdersAsync( MultipleAssociationRequest request, CancellationToken cancellationToken);
+    Task RemoveFromWorkOrdersAsync( MultipleAssociationRequest request, CancellationToken cancellationToken);
+
 }

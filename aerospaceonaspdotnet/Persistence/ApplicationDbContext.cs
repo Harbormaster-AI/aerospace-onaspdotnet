@@ -11,46 +11,46 @@ public class ApplicationDbContext : DbContext
     {
     }
 
-public DbSet<AerospaceManufacturer> AerospaceManufacturers => Set<AerospaceManufacturer>();
-public DbSet<AircraftProgram> AircraftPrograms => Set<AircraftProgram>();
-public DbSet<AircraftFamily> AircraftFamilys => Set<AircraftFamily>();
-public DbSet<AircraftModel> AircraftModels => Set<AircraftModel>();
-public DbSet<EngineType> EngineTypes => Set<EngineType>();
-public DbSet<AircraftVariant> AircraftVariants => Set<AircraftVariant>();
-public DbSet<AvionicsSuite> AvionicsSuites => Set<AvionicsSuite>();
-public DbSet<APU> APUs => Set<APU>();
-public DbSet<LandingGear> LandingGears => Set<LandingGear>();
-public DbSet<AircraftOption> AircraftOptions => Set<AircraftOption>();
-public DbSet<AircraftPackage> AircraftPackages => Set<AircraftPackage>();
-public DbSet<Supplier> Suppliers => Set<Supplier>();
-public DbSet<Component_> Component_s => Set<Component_>();
-public DbSet<Plant> Plants => Set<Plant>();
-public DbSet<ProductionLine> ProductionLines => Set<ProductionLine>();
-public DbSet<WorkCenter> WorkCenters => Set<WorkCenter>();
-public DbSet<ProductionOrder> ProductionOrders => Set<ProductionOrder>();
-public DbSet<BuildSchedule> BuildSchedules => Set<BuildSchedule>();
-public DbSet<Warehouse> Warehouses => Set<Warehouse>();
-public DbSet<InventoryItem> InventoryItems => Set<InventoryItem>();
-public DbSet<Operator_> Operator_s => Set<Operator_>();
-public DbSet<AircraftOrder> AircraftOrders => Set<AircraftOrder>();
-public DbSet<Quote> Quotes => Set<Quote>();
-public DbSet<PurchaseAgreement> PurchaseAgreements => Set<PurchaseAgreement>();
-public DbSet<Aircraft> Aircrafts => Set<Aircraft>();
-public DbSet<Registration> Registrations => Set<Registration>();
-public DbSet<Warranty> Warrantys => Set<Warranty>();
-public DbSet<CabinLayout> CabinLayouts => Set<CabinLayout>();
-public DbSet<MROFacility> MROFacilitys => Set<MROFacility>();
-public DbSet<MaintenanceAppointment> MaintenanceAppointments => Set<MaintenanceAppointment>();
-public DbSet<MaintenanceWorkOrder> MaintenanceWorkOrders => Set<MaintenanceWorkOrder>();
-public DbSet<AirworthinessDirective> AirworthinessDirectives => Set<AirworthinessDirective>();
-public DbSet<ServiceBulletin> ServiceBulletins => Set<ServiceBulletin>();
-public DbSet<ConnectedAircraft> ConnectedAircrafts => Set<ConnectedAircraft>();
-public DbSet<FlightHealthEvent> FlightHealthEvents => Set<FlightHealthEvent>();
-public DbSet<SoftwareLoad> SoftwareLoads => Set<SoftwareLoad>();
-public DbSet<TypeCertificate> TypeCertificates => Set<TypeCertificate>();
-public DbSet<ProductionCertificate> ProductionCertificates => Set<ProductionCertificate>();
-public DbSet<SalesRegion> SalesRegions => Set<SalesRegion>();
-public DbSet<SalesCampaign> SalesCampaigns => Set<SalesCampaign>();
+    public DbSet<AerospaceManufacturer> AerospaceManufacturers => Set<AerospaceManufacturer>();
+    public DbSet<AircraftProgram> AircraftPrograms => Set<AircraftProgram>();
+    public DbSet<AircraftFamily> AircraftFamilys => Set<AircraftFamily>();
+    public DbSet<AircraftModel> AircraftModels => Set<AircraftModel>();
+    public DbSet<EngineType> EngineTypes => Set<EngineType>();
+    public DbSet<AircraftVariant> AircraftVariants => Set<AircraftVariant>();
+    public DbSet<AvionicsSuite> AvionicsSuites => Set<AvionicsSuite>();
+    public DbSet<APU> APUs => Set<APU>();
+    public DbSet<LandingGear> LandingGears => Set<LandingGear>();
+    public DbSet<AircraftOption> AircraftOptions => Set<AircraftOption>();
+    public DbSet<AircraftPackage> AircraftPackages => Set<AircraftPackage>();
+    public DbSet<Supplier> Suppliers => Set<Supplier>();
+    public DbSet<Component_> Component_s => Set<Component_>();
+    public DbSet<Plant> Plants => Set<Plant>();
+    public DbSet<ProductionLine> ProductionLines => Set<ProductionLine>();
+    public DbSet<WorkCenter> WorkCenters => Set<WorkCenter>();
+    public DbSet<ProductionOrder> ProductionOrders => Set<ProductionOrder>();
+    public DbSet<BuildSchedule> BuildSchedules => Set<BuildSchedule>();
+    public DbSet<Warehouse> Warehouses => Set<Warehouse>();
+    public DbSet<InventoryItem> InventoryItems => Set<InventoryItem>();
+    public DbSet<Operator_> Operator_s => Set<Operator_>();
+    public DbSet<AircraftOrder> AircraftOrders => Set<AircraftOrder>();
+    public DbSet<Quote> Quotes => Set<Quote>();
+    public DbSet<PurchaseAgreement> PurchaseAgreements => Set<PurchaseAgreement>();
+    public DbSet<Aircraft> Aircrafts => Set<Aircraft>();
+    public DbSet<Registration> Registrations => Set<Registration>();
+    public DbSet<Warranty> Warrantys => Set<Warranty>();
+    public DbSet<CabinLayout> CabinLayouts => Set<CabinLayout>();
+    public DbSet<MROFacility> MROFacilitys => Set<MROFacility>();
+    public DbSet<MaintenanceAppointment> MaintenanceAppointments => Set<MaintenanceAppointment>();
+    public DbSet<MaintenanceWorkOrder> MaintenanceWorkOrders => Set<MaintenanceWorkOrder>();
+    public DbSet<AirworthinessDirective> AirworthinessDirectives => Set<AirworthinessDirective>();
+    public DbSet<ServiceBulletin> ServiceBulletins => Set<ServiceBulletin>();
+    public DbSet<ConnectedAircraft> ConnectedAircrafts => Set<ConnectedAircraft>();
+    public DbSet<FlightHealthEvent> FlightHealthEvents => Set<FlightHealthEvent>();
+    public DbSet<SoftwareLoad> SoftwareLoads => Set<SoftwareLoad>();
+    public DbSet<TypeCertificate> TypeCertificates => Set<TypeCertificate>();
+    public DbSet<ProductionCertificate> ProductionCertificates => Set<ProductionCertificate>();
+    public DbSet<SalesRegion> SalesRegions => Set<SalesRegion>();
+    public DbSet<SalesCampaign> SalesCampaigns => Set<SalesCampaign>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -61,25 +61,25 @@ public DbSet<SalesCampaign> SalesCampaigns => Set<SalesCampaign>();
         modelBuilder.Entity<AircraftProgram>()
             .HasOne<AerospaceManufacturer>()
             .WithMany(parent => parent.Programs)
-            .HasForeignKey("Programs_Id");
+            .HasForeignKey("AerospaceManufacturer_Id");
 
         // AerospaceManufacturer has one or more Plants of type Plant
         modelBuilder.Entity<Plant>()
             .HasOne<AerospaceManufacturer>()
             .WithMany(parent => parent.Plants)
-            .HasForeignKey("Plants_Id");
+            .HasForeignKey("AerospaceManufacturer_Id");
 
         // AerospaceManufacturer has one or more Suppliers of type Supplier
         modelBuilder.Entity<Supplier>()
             .HasOne<AerospaceManufacturer>()
             .WithMany(parent => parent.Suppliers)
-            .HasForeignKey("Suppliers_Id");
+            .HasForeignKey("AerospaceManufacturer_Id");
 
         // AerospaceManufacturer has one or more ProductionCertificates of type ProductionCertificate
         modelBuilder.Entity<ProductionCertificate>()
             .HasOne<AerospaceManufacturer>()
             .WithMany(parent => parent.ProductionCertificates)
-            .HasForeignKey("ProductionCertificates_Id");
+            .HasForeignKey("AerospaceManufacturer_Id");
 
         // AircraftProgram has one Manufacturer of type AerospaceManufacturer
         modelBuilder.Entity<AircraftProgram>()
@@ -98,13 +98,13 @@ public DbSet<SalesCampaign> SalesCampaigns => Set<SalesCampaign>();
         modelBuilder.Entity<AircraftFamily>()
             .HasOne<AircraftProgram>()
             .WithMany(parent => parent.AircraftFamilies)
-            .HasForeignKey("AircraftFamilies_Id");
+            .HasForeignKey("AircraftProgram_Id");
 
         // AircraftProgram has one or more KeySuppliers of type Supplier
         modelBuilder.Entity<Supplier>()
             .HasOne<AircraftProgram>()
             .WithMany(parent => parent.KeySuppliers)
-            .HasForeignKey("KeySuppliers_Id");
+            .HasForeignKey("AircraftProgram_Id");
 
         // AircraftFamily has one Program of type AircraftProgram
         modelBuilder.Entity<AircraftFamily>()
@@ -117,7 +117,7 @@ public DbSet<SalesCampaign> SalesCampaigns => Set<SalesCampaign>();
         modelBuilder.Entity<AircraftModel>()
             .HasOne<AircraftFamily>()
             .WithMany(parent => parent.AircraftModels)
-            .HasForeignKey("AircraftModels_Id");
+            .HasForeignKey("AircraftFamily_Id");
 
         // AircraftModel has one Family of type AircraftFamily
         modelBuilder.Entity<AircraftModel>()
@@ -130,13 +130,13 @@ public DbSet<SalesCampaign> SalesCampaigns => Set<SalesCampaign>();
         modelBuilder.Entity<AircraftVariant>()
             .HasOne<AircraftModel>()
             .WithMany(parent => parent.Variants)
-            .HasForeignKey("Variants_Id");
+            .HasForeignKey("AircraftModel_Id");
 
         // AircraftModel has one or more EngineTypes of type EngineType
         modelBuilder.Entity<EngineType>()
             .HasOne<AircraftModel>()
             .WithMany(parent => parent.EngineTypes)
-            .HasForeignKey("EngineTypes_Id");
+            .HasForeignKey("AircraftModel_Id");
 
         // EngineType has one Supplier of type Supplier
         modelBuilder.Entity<EngineType>()
@@ -149,7 +149,7 @@ public DbSet<SalesCampaign> SalesCampaigns => Set<SalesCampaign>();
         modelBuilder.Entity<AircraftModel>()
             .HasOne<EngineType>()
             .WithMany(parent => parent.CompatibleModels)
-            .HasForeignKey("CompatibleModels_Id");
+            .HasForeignKey("EngineType_Id");
 
         // AircraftVariant has one Model_ of type AircraftModel
         modelBuilder.Entity<AircraftVariant>()
@@ -186,19 +186,19 @@ public DbSet<SalesCampaign> SalesCampaigns => Set<SalesCampaign>();
         modelBuilder.Entity<CabinLayout>()
             .HasOne<AircraftVariant>()
             .WithMany(parent => parent.CabinLayouts)
-            .HasForeignKey("CabinLayouts_Id");
+            .HasForeignKey("AircraftVariant_Id");
 
         // AircraftVariant has one or more Options of type AircraftOption
         modelBuilder.Entity<AircraftOption>()
             .HasOne<AircraftVariant>()
             .WithMany(parent => parent.Options)
-            .HasForeignKey("Options_Id");
+            .HasForeignKey("AircraftVariant_Id");
 
         // AircraftVariant has one or more Packages of type AircraftPackage
         modelBuilder.Entity<AircraftPackage>()
             .HasOne<AircraftVariant>()
             .WithMany(parent => parent.Packages)
-            .HasForeignKey("Packages_Id");
+            .HasForeignKey("AircraftVariant_Id");
 
         // AvionicsSuite has one Supplier of type Supplier
         modelBuilder.Entity<AvionicsSuite>()
@@ -211,13 +211,13 @@ public DbSet<SalesCampaign> SalesCampaigns => Set<SalesCampaign>();
         modelBuilder.Entity<AircraftVariant>()
             .HasOne<AvionicsSuite>()
             .WithMany(parent => parent.Variants)
-            .HasForeignKey("Variants_Id");
+            .HasForeignKey("AvionicsSuite_Id");
 
         // AvionicsSuite has one or more SoftwareLoads of type SoftwareLoad
         modelBuilder.Entity<SoftwareLoad>()
             .HasOne<AvionicsSuite>()
             .WithMany(parent => parent.SoftwareLoads)
-            .HasForeignKey("SoftwareLoads_Id");
+            .HasForeignKey("AvionicsSuite_Id");
 
         // APU has one Supplier of type Supplier
         modelBuilder.Entity<APU>()
@@ -230,7 +230,7 @@ public DbSet<SalesCampaign> SalesCampaigns => Set<SalesCampaign>();
         modelBuilder.Entity<AircraftVariant>()
             .HasOne<APU>()
             .WithMany(parent => parent.Variants)
-            .HasForeignKey("Variants_Id");
+            .HasForeignKey("APU_Id");
 
         // LandingGear has one Supplier of type Supplier
         modelBuilder.Entity<LandingGear>()
@@ -243,70 +243,70 @@ public DbSet<SalesCampaign> SalesCampaigns => Set<SalesCampaign>();
         modelBuilder.Entity<AircraftVariant>()
             .HasOne<LandingGear>()
             .WithMany(parent => parent.Variants)
-            .HasForeignKey("Variants_Id");
+            .HasForeignKey("LandingGear_Id");
 
 
         // AircraftOption has one or more Variants of type AircraftVariant
         modelBuilder.Entity<AircraftVariant>()
             .HasOne<AircraftOption>()
             .WithMany(parent => parent.Variants)
-            .HasForeignKey("Variants_Id");
+            .HasForeignKey("AircraftOption_Id");
 
         // AircraftOption has one or more Packages of type AircraftPackage
         modelBuilder.Entity<AircraftPackage>()
             .HasOne<AircraftOption>()
             .WithMany(parent => parent.Packages)
-            .HasForeignKey("Packages_Id");
+            .HasForeignKey("AircraftOption_Id");
 
 
         // AircraftPackage has one or more Options of type AircraftOption
         modelBuilder.Entity<AircraftOption>()
             .HasOne<AircraftPackage>()
             .WithMany(parent => parent.Options)
-            .HasForeignKey("Options_Id");
+            .HasForeignKey("AircraftPackage_Id");
 
         // AircraftPackage has one or more Variants of type AircraftVariant
         modelBuilder.Entity<AircraftVariant>()
             .HasOne<AircraftPackage>()
             .WithMany(parent => parent.Variants)
-            .HasForeignKey("Variants_Id");
+            .HasForeignKey("AircraftPackage_Id");
 
 
         // Supplier has one or more Manufacturers of type AerospaceManufacturer
         modelBuilder.Entity<AerospaceManufacturer>()
             .HasOne<Supplier>()
             .WithMany(parent => parent.Manufacturers)
-            .HasForeignKey("Manufacturers_Id");
+            .HasForeignKey("Supplier_Id");
 
         // Supplier has one or more Components of type Component_
         modelBuilder.Entity<Component_>()
             .HasOne<Supplier>()
             .WithMany(parent => parent.Components)
-            .HasForeignKey("Components_Id");
+            .HasForeignKey("Supplier_Id");
 
         // Supplier has one or more EngineTypes of type EngineType
         modelBuilder.Entity<EngineType>()
             .HasOne<Supplier>()
             .WithMany(parent => parent.EngineTypes)
-            .HasForeignKey("EngineTypes_Id");
+            .HasForeignKey("Supplier_Id");
 
         // Supplier has one or more AvionicsSuites of type AvionicsSuite
         modelBuilder.Entity<AvionicsSuite>()
             .HasOne<Supplier>()
             .WithMany(parent => parent.AvionicsSuites)
-            .HasForeignKey("AvionicsSuites_Id");
+            .HasForeignKey("Supplier_Id");
 
         // Supplier has one or more Apus of type APU
         modelBuilder.Entity<APU>()
             .HasOne<Supplier>()
             .WithMany(parent => parent.Apus)
-            .HasForeignKey("Apus_Id");
+            .HasForeignKey("Supplier_Id");
 
         // Supplier has one or more LandingGears of type LandingGear
         modelBuilder.Entity<LandingGear>()
             .HasOne<Supplier>()
             .WithMany(parent => parent.LandingGears)
-            .HasForeignKey("LandingGears_Id");
+            .HasForeignKey("Supplier_Id");
 
         // Component_ has one Supplier of type Supplier
         modelBuilder.Entity<Component_>()
@@ -326,13 +326,13 @@ public DbSet<SalesCampaign> SalesCampaigns => Set<SalesCampaign>();
         modelBuilder.Entity<ProductionLine>()
             .HasOne<Plant>()
             .WithMany(parent => parent.ProductionLines)
-            .HasForeignKey("ProductionLines_Id");
+            .HasForeignKey("Plant_Id");
 
         // Plant has one or more Warehouses of type Warehouse
         modelBuilder.Entity<Warehouse>()
             .HasOne<Plant>()
             .WithMany(parent => parent.Warehouses)
-            .HasForeignKey("Warehouses_Id");
+            .HasForeignKey("Plant_Id");
 
         // ProductionLine has one Plant of type Plant
         modelBuilder.Entity<ProductionLine>()
@@ -345,7 +345,7 @@ public DbSet<SalesCampaign> SalesCampaigns => Set<SalesCampaign>();
         modelBuilder.Entity<WorkCenter>()
             .HasOne<ProductionLine>()
             .WithMany(parent => parent.WorkCenters)
-            .HasForeignKey("WorkCenters_Id");
+            .HasForeignKey("ProductionLine_Id");
 
         // WorkCenter has one ProductionLine of type ProductionLine
         modelBuilder.Entity<WorkCenter>()
@@ -378,14 +378,14 @@ public DbSet<SalesCampaign> SalesCampaigns => Set<SalesCampaign>();
         modelBuilder.Entity<ProductionOrder>()
             .HasOne<BuildSchedule>()
             .WithMany(parent => parent.ProductionOrders)
-            .HasForeignKey("ProductionOrders_Id");
+            .HasForeignKey("BuildSchedule_Id");
 
 
         // Warehouse has one or more InventoryItems of type InventoryItem
         modelBuilder.Entity<InventoryItem>()
             .HasOne<Warehouse>()
             .WithMany(parent => parent.InventoryItems)
-            .HasForeignKey("InventoryItems_Id");
+            .HasForeignKey("Warehouse_Id");
 
         // InventoryItem has one Component of type Component_
         modelBuilder.Entity<InventoryItem>()
@@ -411,13 +411,13 @@ public DbSet<SalesCampaign> SalesCampaigns => Set<SalesCampaign>();
         modelBuilder.Entity<AircraftOrder>()
             .HasOne<Operator_>()
             .WithMany(parent => parent.AircraftOrders)
-            .HasForeignKey("AircraftOrders_Id");
+            .HasForeignKey("Operator__Id");
 
         // Operator_ has one or more OperatedAircraft of type Aircraft
         modelBuilder.Entity<Aircraft>()
             .HasOne<Operator_>()
             .WithMany(parent => parent.OperatedAircraft)
-            .HasForeignKey("OperatedAircraft_Id");
+            .HasForeignKey("Operator__Id");
 
         // AircraftOrder has one Operator_ of type Operator_
         modelBuilder.Entity<AircraftOrder>()
@@ -499,7 +499,7 @@ public DbSet<SalesCampaign> SalesCampaigns => Set<SalesCampaign>();
         modelBuilder.Entity<MaintenanceWorkOrder>()
             .HasOne<Aircraft>()
             .WithMany(parent => parent.MaintenanceRecords)
-            .HasForeignKey("MaintenanceRecords_Id");
+            .HasForeignKey("Aircraft_Id");
 
         // Registration has one Aircraft of type Aircraft
         modelBuilder.Entity<Registration>()
@@ -526,26 +526,26 @@ public DbSet<SalesCampaign> SalesCampaigns => Set<SalesCampaign>();
         modelBuilder.Entity<Aircraft>()
             .HasOne<CabinLayout>()
             .WithMany(parent => parent.Aircraft)
-            .HasForeignKey("Aircraft_Id");
+            .HasForeignKey("CabinLayout_Id");
 
         // CabinLayout has one or more Options of type AircraftOption
         modelBuilder.Entity<AircraftOption>()
             .HasOne<CabinLayout>()
             .WithMany(parent => parent.Options)
-            .HasForeignKey("Options_Id");
+            .HasForeignKey("CabinLayout_Id");
 
 
         // MROFacility has one or more Appointments of type MaintenanceAppointment
         modelBuilder.Entity<MaintenanceAppointment>()
             .HasOne<MROFacility>()
             .WithMany(parent => parent.Appointments)
-            .HasForeignKey("Appointments_Id");
+            .HasForeignKey("MROFacility_Id");
 
         // MROFacility has one or more WorkOrders of type MaintenanceWorkOrder
         modelBuilder.Entity<MaintenanceWorkOrder>()
             .HasOne<MROFacility>()
             .WithMany(parent => parent.WorkOrders)
-            .HasForeignKey("WorkOrders_Id");
+            .HasForeignKey("MROFacility_Id");
 
         // MaintenanceAppointment has one Aircraft of type Aircraft
         modelBuilder.Entity<MaintenanceAppointment>()
@@ -590,20 +590,20 @@ public DbSet<SalesCampaign> SalesCampaigns => Set<SalesCampaign>();
         modelBuilder.Entity<MaintenanceWorkOrder>()
             .HasOne<AirworthinessDirective>()
             .WithMany(parent => parent.WorkOrders)
-            .HasForeignKey("WorkOrders_Id");
+            .HasForeignKey("AirworthinessDirective_Id");
 
 
         // ServiceBulletin has one or more WorkOrders of type MaintenanceWorkOrder
         modelBuilder.Entity<MaintenanceWorkOrder>()
             .HasOne<ServiceBulletin>()
             .WithMany(parent => parent.WorkOrders)
-            .HasForeignKey("WorkOrders_Id");
+            .HasForeignKey("ServiceBulletin_Id");
 
         // ServiceBulletin has one or more Variants of type AircraftVariant
         modelBuilder.Entity<AircraftVariant>()
             .HasOne<ServiceBulletin>()
             .WithMany(parent => parent.Variants)
-            .HasForeignKey("Variants_Id");
+            .HasForeignKey("ServiceBulletin_Id");
 
         // ConnectedAircraft has one Aircraft of type Aircraft
         modelBuilder.Entity<ConnectedAircraft>()
@@ -616,13 +616,13 @@ public DbSet<SalesCampaign> SalesCampaigns => Set<SalesCampaign>();
         modelBuilder.Entity<FlightHealthEvent>()
             .HasOne<ConnectedAircraft>()
             .WithMany(parent => parent.FlightHealthEvents)
-            .HasForeignKey("FlightHealthEvents_Id");
+            .HasForeignKey("ConnectedAircraft_Id");
 
         // ConnectedAircraft has one or more SoftwareLoads of type SoftwareLoad
         modelBuilder.Entity<SoftwareLoad>()
             .HasOne<ConnectedAircraft>()
             .WithMany(parent => parent.SoftwareLoads)
-            .HasForeignKey("SoftwareLoads_Id");
+            .HasForeignKey("ConnectedAircraft_Id");
 
         // FlightHealthEvent has one ConnectedAircraft of type ConnectedAircraft
         modelBuilder.Entity<FlightHealthEvent>()
@@ -663,13 +663,13 @@ public DbSet<SalesCampaign> SalesCampaigns => Set<SalesCampaign>();
         modelBuilder.Entity<Operator_>()
             .HasOne<SalesRegion>()
             .WithMany(parent => parent.Operators)
-            .HasForeignKey("Operators_Id");
+            .HasForeignKey("SalesRegion_Id");
 
         // SalesRegion has one or more SalesCampaigns of type SalesCampaign
         modelBuilder.Entity<SalesCampaign>()
             .HasOne<SalesRegion>()
             .WithMany(parent => parent.SalesCampaigns)
-            .HasForeignKey("SalesCampaigns_Id");
+            .HasForeignKey("SalesRegion_Id");
 
         // SalesCampaign has one Region of type SalesRegion
         modelBuilder.Entity<SalesCampaign>()
@@ -688,7 +688,7 @@ public DbSet<SalesCampaign> SalesCampaigns => Set<SalesCampaign>();
         modelBuilder.Entity<Quote>()
             .HasOne<SalesCampaign>()
             .WithMany(parent => parent.Quotes)
-            .HasForeignKey("Quotes_Id");
+            .HasForeignKey("SalesCampaign_Id");
 
     }
 }

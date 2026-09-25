@@ -1,4 +1,5 @@
 using aerospaceonaspdotnet.Domain;
+using aerospaceonaspdotnet.Contracts;
 
 namespace aerospaceonaspdotnet.Persistence;
 
@@ -9,4 +10,6 @@ public interface ISoftwareLoadRepository
     Task AddAsync(SoftwareLoad softwareLoad, CancellationToken cancellationToken);
     Task UpdateAsync(SoftwareLoad softwareLoad, CancellationToken cancellationToken);
     Task DeleteAsync(SoftwareLoad softwareLoad, CancellationToken cancellationToken);
+
+
 }

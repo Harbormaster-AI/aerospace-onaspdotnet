@@ -1,4 +1,5 @@
 using aerospaceonaspdotnet.Domain;
+using aerospaceonaspdotnet.Contracts;
 
 namespace aerospaceonaspdotnet.Persistence;
 
@@ -9,4 +10,6 @@ public interface IInventoryItemRepository
     Task AddAsync(InventoryItem inventoryItem, CancellationToken cancellationToken);
     Task UpdateAsync(InventoryItem inventoryItem, CancellationToken cancellationToken);
     Task DeleteAsync(InventoryItem inventoryItem, CancellationToken cancellationToken);
+
+
 }

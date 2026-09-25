@@ -1,4 +1,5 @@
 using aerospaceonaspdotnet.Domain;
+using aerospaceonaspdotnet.Contracts;
 
 namespace aerospaceonaspdotnet.Persistence;
 
@@ -9,4 +10,6 @@ public interface IMaintenanceWorkOrderRepository
     Task AddAsync(MaintenanceWorkOrder maintenanceWorkOrder, CancellationToken cancellationToken);
     Task UpdateAsync(MaintenanceWorkOrder maintenanceWorkOrder, CancellationToken cancellationToken);
     Task DeleteAsync(MaintenanceWorkOrder maintenanceWorkOrder, CancellationToken cancellationToken);
+
+
 }
